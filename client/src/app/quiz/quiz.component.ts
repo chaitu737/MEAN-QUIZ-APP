@@ -19,6 +19,7 @@ QID = [];
   answer: any;
  userData: any;
  currentQuestion = 0;
+ showButton: boolean;
 
 constructor(
 private router: Router,
@@ -42,6 +43,7 @@ id
 }
 onSubmit() {
 this.Quizquestions = this.quiz.questions;
+this.showButton = true;
 
 
 }
@@ -50,6 +52,7 @@ this.Quizquestions = this.quiz.questions;
 startQuiz(value) {
 this.quizService.getQuizQuestions(value).subscribe(data => {
 this.quiz = data;
+
      });
 
 
@@ -61,13 +64,7 @@ this.getTitles();
 
 
 
-Answer(i, p) {
-this.userData = {
-QID: i.text,
-AID: p
-};
-console.log(this.userData);
-}
+
 
 OnSubmit() {
 console.log(this.answer);
