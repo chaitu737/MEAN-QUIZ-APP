@@ -42,7 +42,7 @@ id
 });
 }
 onSubmit() {
-this.Quizquestions = this.quiz.questions;
+
 this.showButton = true;
 
 
