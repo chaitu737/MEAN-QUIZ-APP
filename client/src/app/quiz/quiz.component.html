@@ -1,34 +1,20 @@
 <app-navbar></app-navbar>
-<select class="browser-default"  [(ngModel)]="selectQuiz" name="selectQuiz" (change)="startQuiz($event.target.value)" material-select>
+<select class="browser-default"  [(ngModel)]="selectQuiz" name="selectQuiz" (change)="getQuiztitle($event.target.value)">
   <option [ngValue]="undefined" selected>--Select--</option>
-  <option *ngFor="let title of QuizTitles; let i= index" [value]="title.id">{{i}}.{{title.title}}</option>
+  <option *ngFor="let title of QuizTitles" [value]="title.id">{{title.id}}.{{title.title}}</option>
 </select>
 
 <div class="row" *ngIf="selectQuiz">
-    <div class="col s12 m6">
-        <button class="btn btn-success" (click)="onSubmit()">Start Quiz</button>
-
-        <div *ngIf="showButton">
-          <div class="card-content white-text">
-          <div class="card blue-grey darken-1">
-            <span class="card-title">{{currentQuestion+1}}</span>
-            <p>{{quiz['questions'][currentQuestion]['text']}}</p>
-          </div>
-        </div>
-        <div class="card-action">
-          <ul class="collection answer">
-            <ng-container *ngFor="let option of this.quiz['questions'][currentQuestion]['answers']; let i=index">
-              <li>
-                {{option}}
-              </li>
-
-            </ng-container>
-          </ul>
-        </div>
+  <button class="btn btn-success" (click)="onSubmit()">Start Quiz</button> 
+  <ng-container *ngIf="is_ready_quiz">
+    <div *ngIf="showButton">
+      <span class="card-title">{{currentQuestion+1}}</span>
+      <p>{{currentQuestion}}</p>
     </div>
-    </div>
-        </div>
-    
+
+  </ng-container>
+</div>
+
     
           
     

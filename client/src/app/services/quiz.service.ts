@@ -18,4 +18,7 @@ return this.http.get(this.domain).map(res => res);
 getQuizQuestions(id) {
 return this.http.get(this.domain + '/quiz/' + id ).map(res => res);
 }
+getQuizdata() {
+return this.http.get(this.domain + '/quiz' ).map(res => res);
+}
 }

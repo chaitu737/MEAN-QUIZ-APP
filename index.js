@@ -20,14 +20,11 @@ app.get('/',(req,res)=>{
     res.send(titles);
 });
 
-app.get('/,/quiz',(req,res)=>{
+app.get('/quiz',(req,res)=>{
     var readQuiz=fs.readFileSync("data/allQuizes.json",'utf8');
     var jsonContent=JSON.parse(readQuiz);
-    var titles=[];
-    for(var i=0;i<jsonContent.length;i++){
-        titles[i]=jsonContent[i]["title"];
-    }
-    res.send(JSON.stringify(titles));
+    
+    res.send(JSON.stringify(jsonContent));
 })
 
 app.post('/quiz',(req,res)=>{
@@ -46,6 +43,7 @@ app.post('/quiz',(req,res)=>{
 app.get('/quiz/:id',(req,res)=>{
     var readQuiz=fs.readFileSync('data/allQuizes.json','utf8');
     var jsonContent=JSON.parse(readQuiz);
+    
     var targetQuiz
     for(var i=0;i<jsonContent.length;i++){
         if(jsonContent[i]["id"]===parseInt(req.params.id)){

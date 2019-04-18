@@ -14,12 +14,17 @@ form: FormGroup;
 QuizTitles = [];
 Quizquestions;
 selectQuiz;
-quiz;
+public quiz: any = [];
 QID = [];
   answer: any;
  userData: any;
  currentQuestion = 0;
- showButton: boolean;
+ showButton = false;
+ Value;
+ // tslint:disable-next-line:variable-name
+ is_ready_quiz = true;
+
+
 
 constructor(
 private router: Router,
@@ -40,26 +45,28 @@ id
       });
 
 });
+
 }
 onSubmit() {
 
-this.showButton = true;
+this.quizService.getQuizQuestions(this.Value).subscribe(data => {
 
+  console.log(data);
+  this.quiz = data;
+  console.log(this.quiz.questions[this.currentQuestion].text);
+  this.is_ready_quiz = true;
+});
 
 }
 
 
-startQuiz(value) {
-this.quizService.getQuizQuestions(value).subscribe(data => {
-this.quiz = data;
 
-     });
-
+getQuiztitle(value) {
+this.Value = value;
 
 }
 ngOnInit() {
 this.getTitles();
-
 }
 
 
