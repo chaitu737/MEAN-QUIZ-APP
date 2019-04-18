@@ -9,7 +9,7 @@
   <ng-container *ngIf="is_ready_quiz">
     <div *ngIf="showButton">
       <span class="card-title">{{currentQuestion+1}}</span>
-      <p>{{currentQuestion}}</p>
+      <p>{{quiz.questions[currentQuestion]['text']}}</p>
     </div>
 
   </ng-container>
