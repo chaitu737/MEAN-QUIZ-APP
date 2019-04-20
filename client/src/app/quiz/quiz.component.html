@@ -1,29 +1,16 @@
 <app-navbar></app-navbar>
-<select class="browser-default"  [(ngModel)]="selectQuiz" name="selectQuiz" (change)="getQuiztitle($event.target.value)">
-  <option [ngValue]="undefined" selected>--Select--</option>
-  <option *ngFor="let title of QuizTitles" [value]="title.id">{{title.id}}.{{title.title}}</option>
+
+<select class="browser-default" [(ngModel)]="selectQuiz" name="selectQuiz" (change)="getQuiztitles($event.target.value)">
+  <option *ngFor="let title of QuizTitles" [value]="title.id">{{title.id}}{{title.title}}</option>
 </select>
 
-<div class="row" *ngIf="selectQuiz">
-  <button class="btn btn-success" (click)="onSubmit()">Start Quiz</button> 
+<div class="row" *ngIf='selectQuiz'>
+  <button class="btn btn-success" (click)="onSubmit()">Start Quiz</button>
   <ng-container *ngIf="is_ready_quiz">
-    <div *ngIf="showButton">
+    <div class="card-content white text" *ngIf="showButton">
       <span class="card-title">{{currentQuestion+1}}</span>
-      <p>{{quiz.questions[currentQuestion]['text']}}</p>
+      <p>{{quiz['questions'][currentQuestion]['text']}}</p>
     </div>
-
   </ng-container>
-</div>
-
-    
-          
-    
-    
-    
-
-
   
-      
-           
-      
-      
+</div>

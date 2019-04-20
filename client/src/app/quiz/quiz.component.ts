@@ -16,7 +16,7 @@ Quizquestions;
 selectQuiz;
 public quiz: any = [];
 QID = [];
-  answer: any;
+answer: any;
  userData: any;
  currentQuestion = 0;
  showButton = false;
@@ -48,13 +48,12 @@ id
 
 }
 onSubmit() {
-
 this.quizService.getQuizQuestions(this.Value).subscribe(data => {
-
-  console.log(data);
-  this.quiz = data;
-  console.log(this.quiz.questions[this.currentQuestion].text);
-  this.is_ready_quiz = true;
+ this.showButton = true;
+ console.log(data);
+ this.quiz = data;
+ console.log(this.quiz.questions[this.currentQuestion].text);
+ this.is_ready_quiz = true;
 });
 
 }
