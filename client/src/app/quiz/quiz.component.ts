@@ -11,18 +11,15 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class QuizComponent implements OnInit {
 form: FormGroup;
-QuizTitles = [];
+QuizTitles;
 Quizquestions;
-selectQuiz;
+selectQuiz = false;
 public quiz: any = [];
-QID = [];
-answer: any;
- userData: any;
+
  currentQuestion = 0;
- showButton = false;
+
  Value;
- // tslint:disable-next-line:variable-name
- is_ready_quiz = true;
+
 
 
 
@@ -36,32 +33,24 @@ private formBuilder: FormBuilder
 }
 getTitles() {
 this.quizService.getQuiztitles().subscribe(data => {
-const aData = Object.values(data);
-aData.forEach((title: string, id: number) => {
- this.QuizTitles.push({
-  title,
-id
-               });
-      });
+this.QuizTitles = data;
 
 });
 
 }
+
 onSubmit() {
 this.quizService.getQuizQuestions(this.Value).subscribe(data => {
- this.showButton = true;
- console.log(data);
- this.quiz = data;
- console.log(this.quiz.questions[this.currentQuestion].text);
- this.is_ready_quiz = true;
+this.quiz = data;
+console.log(this.quiz);
+console.log(this.quiz.questions[this.currentQuestion].text);
 });
 
 }
 
-
-
-getQuiztitle(value) {
+getQuiztitles(value) {
 this.Value = value;
+
 
 }
 ngOnInit() {
@@ -71,8 +60,4 @@ this.getTitles();
 
 
 
-
-OnSubmit() {
-console.log(this.answer);
-}
 }
